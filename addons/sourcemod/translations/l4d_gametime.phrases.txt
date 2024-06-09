@@ -1,0 +1,33 @@
+// support {white} {default} or {cyan} {lightgreen} or {orange} {olive} or {green}
+
+"Phrases"
+{
+	"GameTime"
+	{
+		"#format"	"{1:N},{2:d},{3:d},{4:t}"
+		"en"		"{olive}{1} {lightgreen}{4} GameTime is {olive}{2} Hours"
+	}
+	"Profile"
+	{
+		"en"		"Profile"
+	}
+	"AchievementStats"
+	{
+		"en"		"Achievement Stats"
+	}
+	"UnknownGameTime"
+	{
+		"#format"	"{1:N},{2:t}"
+		"en"		"{olive}{1} {lightgreen}Unkown GameTime in {2}"
+	}
+	"Requesting"
+	{
+		"#format"	"{1:N},{2:t}"
+		"en"		"Requesting {2} Data for {1}"
+	}
+	"NoData"
+	{
+		"#format"	"{1:N},{2:t}"
+		"en"		"Couldnt Fetch {2} GameTime of {1}"
+	}
+}

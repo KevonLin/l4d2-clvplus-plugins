@@ -3,101 +3,46 @@
 	"1"
 	{
 		"mapinfo"		"dkr_m1_motel"
-		"mapname"		"Dark Carnival Remix"
+		"mapname"		"Dark Carnival Remix(C2 Remix)"
 	}
 	"2"
 	{
-		"mapinfo"		"c3m1_plankcountry_night"
-		"mapname"		"Swamp Fever Night"
+		"mapinfo"		"dprm1_milltown_a"
+		"mapname"		"Hard Rain: Down Pour(C4 Remix)"
 	}
 	"3"
-	{
-		"mapinfo"		"dprm1_milltown_a"
-		"mapname"		"Hard Rain: Down Pour"
-	}
-	"4"
 	{
 		"mapinfo"		"c5m1_darkwaterfront"
 		"mapname"		"Dark Waterfront(C5 Remix)"
 	}
+	"4"
+	{
+		"mapinfo"		"l4d2_city17_01"
+		"mapname"		"City 17"
+	}
 	"5"
 	{
-		"mapinfo"		"c7m1_docks_dark"
-		"mapname"		"The Sacrifice Night"
+		"mapinfo"		"l4d2_oldbreak01_hotel"
+		"mapname"		"Day Break"
 	}
 	"6"
-	{
-		"mapinfo"		"nmrm1_apartment"
-		"mapname"		"No Mercy Rehab"
-	}
-	"7"
-	{
-		"mapinfo"		"ccr1_alleys"
-		"mapname"		"Crash Course Rerouted"
-	}
-	"8"
-	{
-		"mapinfo"		"l4d2_deathtoll01_clam"
-		"mapname"		"Clam Toll"
-	}
-	"9"
-	{
-		"mapinfo"		"l4d2_diescraper1_apartment_361"
-		"mapname"		"Diescraper Redux"
-	}
-	"9"
-	{
-		"mapinfo"		"l4d2_farm01_hilltop"
-		"mapname"		"Blood Harvest Modified"
-	}
-	"10"
-	{
-		"mapinfo"		"csm1_beta_alpinecreek"
-		"mapname"		"Cold Stream Reborn"
-	}
-	"11"
-	{
-		"mapinfo"		"cwm1_intro "
-		"mapname"		"Carried Off"
-	}
-	"12"
-	{
-		"mapinfo"		"cdta_01detour"
-		"mapname"		"Detour Ahead"
-	}
-	"13"
-	{
-		"mapinfo"		"l4d_dbd2dc_anna_is_gone"
-		"mapname"		"Dead Before Dawn"
-	}
-	"14"
-	{
-		"mapinfo"		"l4d2_diescraper1_apartment_361"
-		"mapname"		"Diescraper Redux"
-	}
-	"15"
-	{
-		"mapinfo"		"hf01_theforest"
-		"mapname"		"Haunted Forest"
-	}
-	"16"
-	{
-		"mapinfo"		"x1m1_cliffs"
-		"mapname"		"Open Road"
-	}
-	"17"
-	{
-		"mapinfo"		"l4d2_stadium1_apartment"
-		"mapname"		"Suicide Blitz"
-	}
-	"18"
 	{
 		"mapinfo"		"l4d_yama_1"
 		"mapname"		"Yama"
 	}
-	"19"
+	"7"
 	{
-		"mapinfo"		"l4d_ihm01_forest"
-		"mapname"		"I Hate Mountains"
+		"mapinfo"		"uz_crash"
+		"mapname"		"Undead Zone"
+	}
+	"8"
+	{
+		"mapinfo"		"l4d2_diescraper1_apartment_361"
+		"mapname"		"Diescraper Redux"
+	}
+	"9"
+	{
+		"mapinfo"		"l4d2_stadium1_apartment"
+		"mapname"		"Sucide Blitz 2"
 	}
 }

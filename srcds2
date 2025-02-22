@@ -1,0 +1,86 @@
+#!/bin/sh
+
+SRCDS_USER="steam"
+DIR=/home/$SRCDS_USER/Steam/steamapps/common/l4d2
+DAEMON="$DIR/srcds_run"
+
+SVNUM=2
+IP=0.0.0.0
+PORT=27016
+NAME=L4D2_Server$SVNUM
+PARAMS="-game left4dead2 -ip $IP -port $PORT +sv_clockcorrection_msecs 25 -timeout 10 -tickrate 100 +map c2m1_highway -maxplayers 8 +servercfgfile server$SVNUM.cfg"
+DESC="L4D2 Dedicated Server #$SVNUM on port $PORT"
+
+case "$1" in
+    start)
+        if su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME"; then
+            echo -n "$DESC: $NAME already started!"
+        else
+            echo "Starting $DESC: $NAME"
+            cd $DIR
+            su $SRCDS_USER -l -c "screen -d -m -S $NAME $DAEMON $PARAMS"
+        fi
+        ;;
+
+    stop)
+        if su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME"; then
+            echo -n "Stopping $DESC: $NAME"
+            kill `su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME" | awk -F . '{print $1}' | awk '{print $1}'`
+            echo " ... done."
+        else
+            echo "Couldn't find a running $DESC"
+        fi
+        ;;
+
+    restart)
+        if su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME"; then
+            echo -n "Stopping $DESC: $NAME"
+            kill `su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME" | awk -F . '{print $1}' | awk '{print $1}'`
+            echo " ... done."
+        else
+            echo "Couldn't find a running $DESC"
+        fi
+        echo -n "Starting $DESC: $NAME"
+        cd $DIR
+        su $SRCDS_USER -l -c "screen -d -m -S $NAME $DAEMON $PARAMS"
+        echo " ... done."
+        ;;
+
+    update)
+        # 检查是否有玩家在线
+        PLAYER_COUNT=$(sudo -u $SRCDS_USER $DIR/srcds_run -game left4dead2 -ip $IP -port $PORT +status | grep "players" | awk '{print $2}')
+        if [ "$PLAYER_COUNT" -gt 0 ]; then
+            echo "Server has $PLAYER_COUNT players online. Skipping update." >> /home/steam/l4d2_update.log
+            exit 1
+        fi
+
+        # 停止服务器
+        if su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME"; then
+            echo "Stopping $DESC: $NAME" >> /home/steam/l4d2_update.log
+            kill `su $SRCDS_USER -l -c "screen -ls" | grep -w "$NAME" | awk -F . '{print $1}' | awk '{print $1}'`
+        fi
+
+        # 更新游戏
+        echo "Updating L4D2 Server..." >> /home/steam/l4d2_update.log
+        su $SRCDS_USER -l -c "/home/steam/steamcmd.sh +force_install_dir $DIR +login anonymous +app_update 222860 validate +quit" >> /home/steam/l4d2_update.log 2>&1
+
+        # 重启服务器
+        echo "Restarting $DESC: $NAME" >> /home/steam/l4d2_update.log
+        cd $DIR
+        su $SRCDS_USER -l -c "screen -d -m -S $NAME $DAEMON $PARAMS"
+        ;;
+
+    status)
+        # Check whether there's a "srcds" process
+        ps aux | grep -v grep | grep srcds_r > /dev/null
+        CHECK=$?
+        [ $CHECK -eq 0 ] && echo "SRCDS is UP" || echo "SRCDS is DOWN"
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|status|restart|update}"
+        exit 1
+        ;;
+esac
+
+exit 0
